@@ -23,7 +23,7 @@ const Header = () => (
             textDecoration: 'none'
           }}
         >
-          Gatsby
+          TehWarrer
         </Link>
       </h1>
       <h2 style={{ margin: 0 }}>
@@ -35,6 +35,17 @@ const Header = () => (
           }}
         >
           Projects
+        </Link>
+      </h2>
+      <h2 style={{ margin: 0 }}>
+        <Link
+          to="/about"
+          style={{
+            color: 'white',
+            textDecoration: 'none'
+          }}
+        >
+          About
         </Link>
       </h2>
     </div>
