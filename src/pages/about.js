@@ -15,7 +15,7 @@ class AboutPage extends React.Component {
 }
 
 export const aboutQuery = graphql`
-  query aboutQuery {
+  query AboutQuery {
     contentfulPage(slug: { eq: "about" }) {
       id
       title

@@ -28,7 +28,7 @@ class ProjectPage extends React.Component {
 }
 
 export const projectQuery = graphql`
-  query projectQuery {
+  query ProjectQuery {
     allContentfulProject {
       edges {
         node {
