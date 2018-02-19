@@ -1,7 +1,9 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import ReactMarkdown from 'react-markdown';
+import Gallery from '../components/Gallery';
 
-class ProjectPage extends React.Component {
+export default class ProjectPage extends React.Component {
   render() {
     const projects = this.props.data.allContentfulProject.edges;
     return (
@@ -13,10 +15,8 @@ class ProjectPage extends React.Component {
             return (
               <li key={key.toString()}>
                 <h4>{node.title}</h4>
-                <p>{node.description.description}</p>
-                {node.gallery.map((image, key) => {
-                  return <img src={image.file.url} key={key} />;
-                })}
+                <ReactMarkdown source={node.description.description} />
+                <Gallery images={node.gallery} />
               </li>
             );
           })}
@@ -40,8 +40,11 @@ export const projectQuery = graphql`
           }
           gallery {
             id
-            file {
-              url
+            resolutions(width: 400) {
+              width
+              height
+              src
+              srcSet
             }
           }
         }
@@ -49,4 +52,3 @@ export const projectQuery = graphql`
     }
   }
 `;
-export default ProjectPage;

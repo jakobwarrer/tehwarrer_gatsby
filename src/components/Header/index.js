@@ -12,7 +12,9 @@ const Header = () => (
       style={{
         margin: '0 auto',
         maxWidth: 960,
-        padding: '1.45rem 1.0875rem'
+        padding: '1.45rem 1.0875rem',
+        display: 'flex',
+        alignItems: 'center'
       }}
     >
       <h1 style={{ margin: 0 }}>
@@ -31,7 +33,8 @@ const Header = () => (
           to="/projects"
           style={{
             color: 'white',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            marginLeft: '2rem'
           }}
         >
           Projects
@@ -42,7 +45,8 @@ const Header = () => (
           to="/about"
           style={{
             color: 'white',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            marginLeft: '2rem'
           }}
         >
           About
