@@ -18,6 +18,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               node {
                 id
                 title
+                slug
+                contentful_id
               }
             }
           }
@@ -28,11 +30,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
         result.data.allContentfulProject.edges.forEach(edge => {
           createPage({
-            path: edge.node.id,
+            path: 'projects/' + edge.node.slug,
             component: storeTemplate,
             context: {
-              slug: edge.node.id,
-            },
+              slug: edge.node.contentful_id
+            }
           });
         });
         return;

@@ -1,37 +1,42 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import Link from 'gatsby-link';
+import ReactMarkdown from 'react-markdown';
+import Gallery from '../components/Gallery';
 
-export default function Template({ data }) {
-  const post = data.contentfulProject;
-  return (
-    <div className="blog-post-container">
-      <Helmet title="test" />
-      <div className="blog-post">
-        <h1>{post.edges.node.title}</h1>
+class Template extends React.Component {
+  render() {
+    const post = this.props.data.contentfulProject;
+    console.log(post);
+    return (
+      <div>
+        <h1>{post.title}</h1>
+        <ReactMarkdown source={post.description.description} />
+        <Gallery images={post.gallery} />
+        <Link to="/">Go back to the homepage</Link>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default Template;
+
 export const pageQuery = graphql`
-  query ProjectPostByPath($path: String!) {
-    contentfulProject(id: { eq: $path }) {
-      edges {
-        node {
-          id
-          title
-          description {
-            id
-            description
-          }
-          gallery {
-            id
-            resolutions(width: 400) {
-              width
-              height
-              src
-              srcSet
-            }
-          }
+  query blogPostQuery($slug: String!) {
+    contentfulProject(contentful_id: { eq: $slug }) {
+      id
+      contentful_id
+      title
+      description {
+        id
+        description
+      }
+      gallery {
+        id
+        resolutions(width: 400) {
+          width
+          height
+          src
+          srcSet
         }
       }
     }

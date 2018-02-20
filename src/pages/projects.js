@@ -14,14 +14,11 @@ const ProjectPage = props => {
           const node = project.node;
           return (
             <li key={key.toString()}>
-              <h4>{node.title}</h4>
-              <ReactMarkdown source={node.description.description} />
-              <Gallery images={node.gallery} />
+              <Link to={`/projects/${node.slug}`}>{node.title}</Link>
             </li>
           );
         })}
       </ul>
-      <Link to="/">Go back to the homepage</Link>
     </div>
   );
 };
@@ -32,21 +29,8 @@ export const projectQuery = graphql`
     allContentfulProject {
       edges {
         node {
-          id
           title
-          description {
-            id
-            description
-          }
-          gallery {
-            id
-            resolutions(width: 400) {
-              width
-              height
-              src
-              srcSet
-            }
-          }
+          slug
         }
       }
     }
