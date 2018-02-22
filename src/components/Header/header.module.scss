@@ -1,0 +1,11 @@
+.header {
+  font-size: 10px;
+  background-color: rgba(#333, 0.8);
+  padding-top: 3em;
+  padding-bottom: 3em;
+  &__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    font-size: 1.8em;
+  }
+}

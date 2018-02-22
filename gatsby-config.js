@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: 'TehWarrer - Home of all things TehWarrer'
@@ -7,9 +9,26 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: 'amekduggx72e',
-        accessToken:
-          '6150ba86d294703b2d675c0eaff99144f4d4a1c441ec2c067e3b06687ef8cf35'
+        spaceId: process.env.CONTENTFUL_SPACE_ID || '',
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || ''
+      }
+    },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        precision: 8
+      }
+    },
+    {
+      resolve: `gatsby-plugin-react-css-modules`,
+      options: {
+        // *.css files are included by default.
+        // To support another syntax (e.g. SCSS),
+        // add `postcss-scss` to your project's devDependencies
+        // and add the following option here:
+        filetypes: {
+          '.scss': { syntax: `postcss-scss` }
+        }
       }
     }
   ]
