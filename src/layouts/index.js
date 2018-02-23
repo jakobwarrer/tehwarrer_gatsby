@@ -4,9 +4,10 @@ import Helmet from 'react-helmet';
 
 import Header from '../components/Header';
 import './index.scss';
+import classes from './main.module.scss';
 
 const TemplateWrapper = ({ children }) => (
-  <div>
+  <div className={classes.template}>
     <Helmet
       title="TehWarrer - Home of all things TehWarrer"
       meta={[
@@ -15,7 +16,7 @@ const TemplateWrapper = ({ children }) => (
       ]}
     />
     <Header />
-    <div>{children()}</div>
+    <div className={classes.template__content}>{children()}</div>
   </div>
 );
 

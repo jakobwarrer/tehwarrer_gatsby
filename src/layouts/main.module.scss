@@ -1,0 +1,18 @@
+@import '../styles/colors';
+@import '../styles/mixins';
+
+.template {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  &__content {
+    transition: ease all 0.3s;
+    width: percentage(2/3);
+    color: $white;
+    padding: 5rem;
+    font-size: 1.8rem;
+    a {
+      color: $blue;
+    }
+  }
+}

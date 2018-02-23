@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'gatsby-link';
 import LinkList from '../LinkList';
 import classes from './header.module.scss';
-console.log(classes);
 
 const Header = () => (
   <div className={classes.header}>

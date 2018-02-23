@@ -1,26 +1,30 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import classes from './menu.module.scss';
 
 const LinkList = props => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap'
-      }}
-    >
+    <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" exact activeClassName={classes.active}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link activeClassName={classes.active} to="/about">
+            About
+          </Link>
         </li>
         <li>
-          <Link to="/blog">Blog</Link>
+          <Link activeClassName={classes.active} to="/blog">
+            Blog
+          </Link>
         </li>
         <li>
-          <Link to="/projects">Projects</Link>
+          <Link activeClassName={classes.active} to="/projects">
+            Projects
+          </Link>
         </li>
       </ul>
     </div>

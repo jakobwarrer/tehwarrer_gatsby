@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'gatsby-link';
 import ReactMarkdown from 'react-markdown';
 import Gallery from '../components/Gallery';
+import './index.scss';
 
 class Template extends React.Component {
   render() {
     const post = this.props.data.contentfulProject;
-    console.log(post);
     return (
       <div>
         <h1>{post.title}</h1>
