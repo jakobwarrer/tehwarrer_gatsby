@@ -5,6 +5,23 @@
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  > * {
+    z-index: 10;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba($blue-deep, 0.8);
+    z-index: 0;
+  }
   &__content {
     transition: ease all 0.3s;
     width: percentage(2/3);

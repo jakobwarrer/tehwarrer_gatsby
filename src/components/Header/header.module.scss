@@ -1,7 +1,7 @@
 @import '../../styles/colors';
 @import '../../styles/mixins';
 .header {
-  background-color: $menu;
+  background-color: rgba($menu, 0.5);
   padding-top: 3em;
   padding-bottom: 3em;
   width: percentage(3/3);
