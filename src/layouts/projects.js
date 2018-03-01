@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import ReactMarkdown from 'react-markdown';
 import Gallery from '../components/Gallery';
-
+import classes from '../pages/page.module.scss';
 import './index.scss';
 
 class Template extends React.Component {
@@ -13,11 +13,15 @@ class Template extends React.Component {
   render() {
     const post = this.props.data.contentfulProject;
     return (
-      <div>
-        <h1>{post.title}</h1>
-        <ReactMarkdown source={post.description.description} />
-        <Gallery images={post.gallery} />
-        <Link to="/">Go back to the homepage</Link>
+      <div className={classes.page}>
+        <div className={classes.page__info}>
+          <h1>{post.title}</h1>
+        </div>
+        <div className={classes.page__content}>
+          <ReactMarkdown source={post.description.description} />
+          <Gallery images={post.gallery} />
+          <Link to="/">Go back to the homepage</Link>
+        </div>
       </div>
     );
   }
@@ -37,7 +41,7 @@ export const pageQuery = graphql`
       }
       gallery {
         id
-        resolutions(width: 400) {
+        resolutions(width: 400, height: 400) {
           width
           height
           src

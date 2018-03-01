@@ -1,4 +1,42 @@
 @import '../../styles/colors';
+@import '../../styles/mixins';
+
+.menu {
+  &__list {
+    list-style: none;
+    color: $white;
+
+    @include mq(sm) {
+      display: flex;
+      li + li {
+        margin-left: 4rem;
+      }
+    }
+    @include mq($until: sm) {
+      li + li {
+        margin-top: 2rem;
+      }
+    }
+
+    li {
+      font-size: 3.6rem;
+      text-transform: uppercase;
+      font-weight: 300;
+
+      @include mq(sm) {
+        font-size: 5.6rem;
+      }
+      a {
+        color: $white;
+        text-decoration: none;
+        transition: ease all 0.3s;
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+}
 
 a.active {
   color: $blue !important;

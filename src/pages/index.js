@@ -3,6 +3,7 @@ import Link from 'gatsby-link';
 import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
 import { setImage } from '../state/app';
+import classes from './page.module.scss';
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -11,17 +12,22 @@ class IndexPage extends React.Component {
   }
   componentDidMount() {
     this.props.setImage({
-      image: this.state.data.background.resolutions.src
+      image: this.state.data.background.resolutions.src,
     });
     //console.log(this.state.data.background.resolutions.srcSet);
   }
   render() {
     const data = this.state.data;
     return (
-      <div>
-        <div>
+      <div className={classes.page}>
+        <div className={classes.page__info}>
           <h1>{data.title}</h1>
-          <ReactMarkdown source={data.content.content} />
+        </div>
+        <div className={classes.page__content}>
+          <ReactMarkdown
+            className={classes.page__text}
+            source={data.content.content}
+          />
         </div>
       </div>
     );
@@ -29,11 +35,11 @@ class IndexPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  image: state.data
+  image: state.data,
 });
 
 const mapDispatchToProps = {
-  setImage
+  setImage,
 };
 
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(IndexPage);
