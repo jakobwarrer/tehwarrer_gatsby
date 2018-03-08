@@ -9,11 +9,22 @@ const path = require('path');
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
   return new Promise((resolve, reject) => {
-    const storeTemplate = path.resolve('src/layouts/projects.js');
+    const storeProjectTemplate = path.resolve('src/layouts/projects.js');
+    const storePageTemplate = path.resolve('src/layouts/pages.js');
     resolve(
       graphql(`
         {
           allContentfulProject(limit: 100) {
+            edges {
+              node {
+                id
+                title
+                slug
+                contentful_id
+              }
+            }
+          }
+          allContentfulPage(limit: 100) {
             edges {
               node {
                 id
@@ -31,7 +42,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         result.data.allContentfulProject.edges.forEach(edge => {
           createPage({
             path: 'projects/' + edge.node.slug,
-            component: storeTemplate,
+            component: storeProjectTemplate,
+            context: {
+              slug: edge.node.contentful_id
+            }
+          });
+        });
+        result.data.allContentfulPage.edges.forEach(edge => {
+          createPage({
+            path: edge.node.slug,
+            component: storePageTemplate,
             context: {
               slug: edge.node.contentful_id
             }

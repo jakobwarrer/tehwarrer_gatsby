@@ -1,0 +1,10 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+
+.page__info {
+  padding: 3rem 1.5rem;
+  width: 100%;
+  @include mq(sm) {
+    width: percentage($number: 1/3);
+  }
+}

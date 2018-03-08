@@ -1,13 +1,15 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import ReactMarkdown from 'react-markdown';
-import Sidebar from '../components/Sidebar';
-import Wrapper from '../components/Wrapper';
-import Content from '../components/Content';
 import { connect } from 'react-redux';
 import { setImage } from '../state/app';
+import Gallery from '../components/Gallery';
+import Sidebar from '../components/Sidebar';
+import Content from '../components/Content';
+import Wrapper from '../components/Wrapper';
+import './index.scss';
 
-class IndexPage extends React.Component {
+class PageTemplate extends React.Component {
   constructor(props) {
     super(props);
     this.state = { data: this.props.data.contentfulPage };
@@ -19,13 +21,13 @@ class IndexPage extends React.Component {
     //console.log(this.state.data.background.resolutions.srcSet);
   }
   render() {
-    const data = this.state.data;
+    const post = this.props.data.contentfulPage;
     return (
       <Wrapper>
         <Sidebar>
-          <h1>{data.title}</h1>
+          <h1>{post.title}</h1>
         </Sidebar>
-        <Content markdown={data.content.content} />
+        <Content markdown={post.content.content} />
       </Wrapper>
     );
   }
@@ -39,13 +41,15 @@ const mapDispatchToProps = {
   setImage
 };
 
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(IndexPage);
+const PageContainer = connect(mapStateToProps, mapDispatchToProps)(
+  PageTemplate
+);
 
-export default AppContainer;
+export default PageContainer;
 
-export const homeQuery = graphql`
-  query HomeQuery {
-    contentfulPage(slug: { eq: "home" }) {
+export const pageQuery = graphql`
+  query pageQuery($slug: String!) {
+    contentfulPage(contentful_id: { eq: $slug }) {
       id
       title
       slug

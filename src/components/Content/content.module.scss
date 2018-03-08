@@ -1,0 +1,17 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+
+.page {
+  &__content {
+    padding: 3rem 1.5rem;
+    width: 100%;
+    @include mq(sm) {
+      width: percentage($number: 2/3);
+    }
+  }
+  &__text {
+    :first-child {
+      padding-top: 0;
+    }
+  }
+}

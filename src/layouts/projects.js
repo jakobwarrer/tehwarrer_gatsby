@@ -2,10 +2,12 @@ import React from 'react';
 import Link from 'gatsby-link';
 import ReactMarkdown from 'react-markdown';
 import Gallery from '../components/Gallery';
-import classes from '../pages/page.module.scss';
+import Wrapper from '../components/Wrapper';
+import Content from '../components/Content';
+import Sidebar from '../components/Sidebar';
 import './index.scss';
 
-class Template extends React.Component {
+class ProjectTemplate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,24 +15,23 @@ class Template extends React.Component {
   render() {
     const post = this.props.data.contentfulProject;
     return (
-      <div className={classes.page}>
-        <div className={classes.page__info}>
+      <Wrapper>
+        <Sidebar>
           <h1>{post.title}</h1>
-        </div>
-        <div className={classes.page__content}>
-          <ReactMarkdown source={post.description.description} />
+        </Sidebar>
+        <Content markdown={post.description.description}>
           <Gallery images={post.gallery} />
           <Link to="/">Go back to the homepage</Link>
-        </div>
-      </div>
+        </Content>
+      </Wrapper>
     );
   }
 }
 
-export default Template;
+export default ProjectTemplate;
 
-export const pageQuery = graphql`
-  query blogPostQuery($slug: String!) {
+export const projectQuery = graphql`
+  query projectQuery($slug: String!) {
     contentfulProject(contentful_id: { eq: $slug }) {
       id
       contentful_id
